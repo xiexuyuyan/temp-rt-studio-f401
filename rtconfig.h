@@ -42,7 +42,7 @@
 #define RT_USING_DEVICE
 #define RT_USING_CONSOLE
 #define RT_CONSOLEBUF_SIZE 256
-#define RT_CONSOLE_DEVICE_NAME "uart1"
+#define RT_CONSOLE_DEVICE_NAME "uart2"
 /* end of Kernel Device Object */
 #define RT_VER_NUM 0x40003
 /* end of RT-Thread Kernel */

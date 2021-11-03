@@ -5,7 +5,7 @@
  *
  * Change Logs:
  * Date           Author       Notes
- * 2021-11-01     RT-Thread    first version
+ * 2021-11-03     RT-Thread    first version
  */
 
 #include <rtthread.h>
@@ -26,12 +26,10 @@ int main(void)
 
     while (count++)
     {
-        LOG_D("Hello RT-Thread!");
-        rt_thread_mdelay(1000);
-
-        rt_thread_mdelay(500);
+        rt_kprintf("Hello RT-Thread!");
+        rt_thread_mdelay(300);
         rt_pin_write(LED_PIN, PIN_HIGH);
-        rt_thread_mdelay(500);
+        rt_thread_mdelay(5000);
         rt_pin_write(LED_PIN, PIN_LOW);
     }
 
