@@ -519,7 +519,8 @@ void finsh_thread_entry(void *parameter)
         rt_device_t console = rt_console_get_device();
         if (console)
         {
-            finsh_set_device(console->parent.name);
+            rt_console_set_device("vcom");
+            finsh_set_device("vcom");
         }
     }
 #endif
