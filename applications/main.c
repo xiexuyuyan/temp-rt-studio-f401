@@ -21,8 +21,15 @@
 int main(void)
 {
     int count = 1;
-    MX_USB_DEVICE_Init();
+
     rt_pin_mode(LED_PIN, PIN_MODE_OUTPUT);
+
+#if defined (USB_OTG_FS)
+    rt_kprintf("defined otg fs!\r\n");
+    rt_pin_write(LED_PIN, PIN_HIGH);
+#endif
+
+    MX_USB_DEVICE_Init();
 
     while (count++)
     {
