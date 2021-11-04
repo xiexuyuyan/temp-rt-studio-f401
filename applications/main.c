@@ -24,23 +24,24 @@ int main(void)
 
     rt_pin_mode(LED_PIN, PIN_MODE_OUTPUT);
 
-#if defined (USB_OTG_FS)
-    rt_kprintf("defined otg fs!\r\n");
-    rt_pin_write(LED_PIN, PIN_HIGH);
-#endif
-
-    MX_USB_DEVICE_Init();
+    rt_device_t dev = RT_NULL;
+    dev = rt_device_find("vcom");
+    char buf[] = "usbd\r\n";
+    if (dev) {
+        rt_device_open(dev, RT_DEVICE_FLAG_RDWR);
+    } else {
+        return -RT_ERROR;
+    }
 
     while (count++)
     {
-        rt_kprintf("Hello RT-Thread!");
+        rt_kprintf("Hello RT-Thread!\r\n");
         rt_thread_mdelay(300);
         rt_pin_write(LED_PIN, PIN_HIGH);
         rt_thread_mdelay(5000);
         rt_pin_write(LED_PIN, PIN_LOW);
 
-        uint8_t str[] = {'c', 'd', 'c', 'o', 'k', '\0'};
-        CDC_Transmit_FS(str, 5u);
+        rt_device_write(dev, 0, buf, rt_strlen(buf));
     }
 
     return RT_EOK;

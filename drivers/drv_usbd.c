@@ -42,7 +42,6 @@ void USBD_IRQ_HANDLER(void)
     rt_interrupt_leave();
 }
 
-/*
 void HAL_PCD_ResetCallback(PCD_HandleTypeDef *pcd)
 {
     // open ep0 OUT and IN
@@ -94,7 +93,7 @@ void HAL_PCD_DataOutStageCallback(PCD_HandleTypeDef *hpcd, uint8_t epnum)
         rt_usbd_ep0_out_handler(&_stm_udc, hpcd->OUT_ep[0].xfer_count);
     }
 } 
-*/
+
 
 void HAL_PCDEx_SetConnectionState(PCD_HandleTypeDef *hpcd, uint8_t state)
 {
