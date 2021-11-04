@@ -26,9 +26,10 @@ int main(void)
 
     rt_device_t dev = RT_NULL;
     dev = rt_device_find("vcom");
-    char buf[] = "usbd\r\n";
+    char buf[] = "usbd write to pc\r\n";
+    char bufRec[512];
     if (dev) {
-        rt_device_open(dev, RT_DEVICE_FLAG_RDWR);
+        rt_device_open(dev, RT_DEVICE_FLAG_RDWR | RT_DEVICE_FLAG_INT_RX);
     } else {
         return -RT_ERROR;
     }
@@ -42,6 +43,11 @@ int main(void)
         rt_pin_write(LED_PIN, PIN_LOW);
 
         rt_device_write(dev, 0, buf, rt_strlen(buf));
+
+        int realRec = 0;
+        realRec = rt_device_read(dev, 0, bufRec, sizeof(bufRec));
+        bufRec[realRec] = '\0';
+        rt_kprintf(bufRec);
     }
 
     return RT_EOK;
