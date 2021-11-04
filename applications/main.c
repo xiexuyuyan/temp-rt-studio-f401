@@ -21,7 +21,7 @@
 int main(void)
 {
     int count = 1;
-
+    MX_USB_DEVICE_Init();
     rt_pin_mode(LED_PIN, PIN_MODE_OUTPUT);
 
     while (count++)
@@ -31,6 +31,9 @@ int main(void)
         rt_pin_write(LED_PIN, PIN_HIGH);
         rt_thread_mdelay(5000);
         rt_pin_write(LED_PIN, PIN_LOW);
+
+        uint8_t str[] = {'c', 'd', 'c', 'o', 'k', '\0'};
+        CDC_Transmit_FS(str, 5u);
     }
 
     return RT_EOK;
