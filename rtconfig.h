@@ -150,6 +150,9 @@
 
 /* end of Wiced WiFi */
 /* end of Wi-Fi */
+#define PKG_USING_AT_DEVICE
+#define PKG_USING_AT_DEVICE_V204
+#define PKG_AT_DEVICE_VER_NUM 0x20004
 
 /* IoT Cloud */
 
