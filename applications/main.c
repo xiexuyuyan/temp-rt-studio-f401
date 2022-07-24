@@ -26,7 +26,7 @@ int main(void)
 
     while (count++)
     {
-        rt_kprintf("Hello RT-Thread!");
+        // rt_kprintf("Hello RT-Thread!");
         rt_thread_mdelay(300);
         rt_pin_write(LED_PIN, PIN_HIGH);
         rt_thread_mdelay(5000);
